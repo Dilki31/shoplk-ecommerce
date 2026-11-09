@@ -1,0 +1,20 @@
+### 1. Admin Login
+POST http://localhost:8082/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@shoplk.com",
+  "password": "admin123"
+}
+
+### 2. Get All Products
+GET http://localhost:8082/api/products
+
+### 3. Customer Register
+POST http://localhost:8082/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "customer@gmail.com",
+  "password": "cust123"
+}
