@@ -10,10 +10,10 @@ A production-ready **REST API** built with Spring Boot for managing an e-commerc
 
 ## ✨ Key Features
 - 🔐 **JWT Authentication**: Secure login and registration for customers.
-- 👨‍💼 **Admin Panel**: Admins can add products and manage categories.
+- 👨‍💼 **Admin-only product creation**: Only ADMIN users can add products (optionally linked to a category).
 - 🛍️ **Product Management**: Browse all products (publicly accessible).
-- 🛒 **Shopping Cart**: Customers can add items to their cart.
-- 📦 **Order Management**: Customers can checkout their cart and view order history.
+- 🛒 **Shopping Cart**: Customers can add items to their cart (stock is validated).
+- 📦 **Order Management**: Checkout runs in one transaction: it creates the order, reduces stock and clears the cart. Customers can view their order history.
 - ⚡ **Global Exception Handling**: Clean and structured API error responses.
 
 ## 🛠️ How to Run Locally
@@ -47,8 +47,25 @@ bash
 
 - **service/ - Business Logic**
 
+## ⚙️ Configuration
+Secrets are **not** stored in this repository. Set these environment variables before starting the app:
+
+| Variable | Description |
+|---|---|
+| `DB_PASSWORD` | Password of your local PostgreSQL user |
+| `JWT_SECRET` | Base64-encoded secret key, at least 256 bits (32 bytes) |
+
+Generate a key: `openssl rand -base64 32` (macOS/Linux/Git Bash).
+
+Run on Windows PowerShell:
+```powershell
+$env:DB_PASSWORD="your-db-password"
+$env:JWT_SECRET="your-generated-base64-key"
+./mvnw spring-boot:run
+```
+
 👨‍💻 Author
 **Dilki Nanayakkara**
 
-**GitHub: @Diliki31**
+**GitHub: @Dilki31**
    
